@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Convert JSON to Excel</title>
+  </head>
+  <body>
+    <p>Converting JSON Data to Excel file</p>
+    
+    <button onclick="fetchDataAndDownloadExcel()">Download Excel</button>
+    
+  </body>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
+
+  <script>
+    async function fetchDataAndDownloadExcel() {
+      // try {
+      //   const response = {
+      //     data: {
+      //       key1: ["abc", "xyz"],
+      //       key2: [1, 2]
+      //     }
+      //   };
+      try {
+
+        const API = 'http://127.0.0.1:5000/get_data?start=2023-06-01&end=2028-06-01&operating_day=2023-06-01&offset=0&curve_type=energy&iso=ercot&strip=strip_5x16&history=false&type=JSON';
+        
+        const response = await axios.get(API);
+        const jsonData = response.data; 
+
+        jsonToExcel(jsonData);
+
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    }
+
+    function jsonToExcel(jsondata) {
+      const headers = Object.keys(jsondata);
+      const numRows = jsondata[headers[0]].length;
+      
+      const excelData = [];
+
+      excelData.push(headers);
+
+      for (let i = 0; i < numRows; i++) {
+        const row = headers.map(header => jsondata[header][i]);
+        excelData.push(row);
+      }
+
+      
+      const worksheet = XLSX.utils.aoa_to_sheet(excelData);
+
+     
+      const workbook = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(workbook, worksheet, "Sheet1");
+
+      
+      XLSX.writeFile(workbook, "jsonData.xlsx");
+    }
+  </script>
+</html>
