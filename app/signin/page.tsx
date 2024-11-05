@@ -3,7 +3,8 @@
 import React, { useState, useCallback, Suspense, useEffect } from "react";
 import * as z from "zod";
 import ApiLogin from '../api/auth/apilogin';
-import { useRouter } from "next/router";
+// import { useRouter } from "next/router";
+import { useRouter } from "next/navigation"
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm, SubmitHandler } from "react-hook-form";
 import {
@@ -13,7 +14,11 @@ import {
   FormLabel,
   FormControl,
   FormMessage,
-} from "@/components/ui/form"; // Adjust the import path as necessary
+} from "@/components/ui/form"; 
+
+import Image from 'next/image';
+import Logo from '/public/images/TLE_Logo.png';
+
 
 
 // Dynamic imports for optimization
@@ -52,8 +57,6 @@ const Page: React.FC = () => {
       if (data.access_token) {
         localStorage.setItem("access_token", data.access_token);
         console.log("Login Successful", data);
-        
-        //  window.location.href = "http://127.0.0.1:5000/home";
       } else {
         setErrorMessage(data.msg || "Login failed. Please try again.");
       }
@@ -63,8 +66,7 @@ const Page: React.FC = () => {
     } finally {
       setLoading(false);
     }
-  }, [router]); // Include router in the dependency array
-  // Preload the button for faster interaction
+  }, [router]); 
   useEffect(() => {
     React.startTransition(() => {
       import("@/components/ui/button");
@@ -75,7 +77,8 @@ const Page: React.FC = () => {
     <div className="min-h-screen bg-gradient-to-br from-blue-100 to-indigo-200 flex justify-center items-center p-4">
       <div className="bg-white rounded-2xl shadow-xl overflow-hidden max-w-xl w-full p-8">
         <div className="text-center mb-8">
-          <h2 className="text-3xl font-semibold mb-4 text-indigo-700">TrueLight Energy</h2>
+          <Image src={Logo} alt="TrueLight Energy Logo" className="mx-auto mb-4" />
+          {/* <h2 className="text-3xl font-semibold mb-4 text-indigo-700">TrueLight Energy</h2> */}
         </div>
 
         {errorMessage && (
