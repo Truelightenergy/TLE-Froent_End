@@ -1,0 +1,134 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  @apply bg-gray-100 text-gray-800;
+  color: var(--foreground);
+  background: var(--background);
+  font-family: Arial, Helvetica, sans-serif;
+  position: relative; /* Added to ensure stacking context for z-index */
+  z-index: 1; /* Ensures content appears above the background */
+}
+
+h1 {
+  @apply text-xl font-bold mb-4;
+}
+
+@keyframes scrollNotification {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.animate-scrollNotification {
+  animation: scrollNotification 30s linear infinite;
+}
+
+.charts {
+  max-height: 85vh;
+  overflow-y: auto;
+}
+
+/* Scrolling notification container */
+.notification-container {
+  position: relative;
+  overflow: hidden;
+  background-color: #1E40AF;
+  color: white;
+  text-align: center;
+  font-weight: 600;
+  padding: 5px 10px; /* Reduced padding */
+  height: 35px; /* Reduced height slightly */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Scrolling text */
+.notification-text {
+  display: inline-block;
+  white-space: nowrap;
+  animation: scrollNotification 20s linear infinite;
+}
+
+table th, table td {
+  padding: 0.5rem 1rem; /* Tighter padding for cells */
+}
+
+.shadow-lg {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Light shadow */
+}
+
+.content-container {
+  margin-top: 50px; /* Adjust this value to control the space */
+}
+
+#pricedesk {
+  height: 250px;
+}
+
+/* Animated background styles */
+.animated-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1; /* Keeps background behind the content */
+  background: linear-gradient(130deg, #1e293b, #111827, #1e3a8a, #111827);
+  background-size: 400% 400%;
+  animation: gradientAnimation 10s ease infinite;
+  transition: all 0.5s ease-in-out; /* Smooth transitions for changes */
+}
+
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Form container styles */
+.login-form {
+  position: relative;
+  z-index: 1; /* Keeps the form above the background */
+  background: rgba(255, 255, 255, 0.9); /* Slight transparency for blending */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow for better visibility */
+  border-radius: 8px;
+  padding: 20px;
+  max-width: 400px;
+  margin: 0 auto;
+  transform: translateY(50%); /* Center vertically if needed */
+  animation: fadeIn 1s ease-in-out; /* Smooth fade-in effect */
+}
+
+/* Fade-in animation for form */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
