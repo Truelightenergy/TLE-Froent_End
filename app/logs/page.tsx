@@ -5,21 +5,21 @@ import Layout from "../home/layout";
 import api from "../../api/auth/apibase";
 
 const LogsPage: React.FC = () => {
-  const [logs, setLogs] = useState<string[]>([]); // Correct state type as an array of strings
+  const [logs, setLogs] = useState<string[]>([]); 
   const [loading, setLoading] = useState<boolean>(true);
 
   const fetchLogs = async () => {
     try {
-      const response = await api.get("/127.0.0.1:5000/get_logs"); // Correct API call
-      console.log("Response:", response); // Debug the response
-      const logString: string = response; // Assuming response.data is a string
-      const logArray = logString.split("\n"); // Split logs into an array of strings
+      const response = await api.get("get_logs");
+      console.log("Response:", response); 
+      const logString: string = response; 
+      const logArray = logString.split("\n"); 
 
-      // Now, print each line one by one with a delay
+    
       for (let i = 0; i < logArray.length; i++) {
         setTimeout(() => {
           setLogs((prevLogs) => [...prevLogs, logArray[i]]);
-        }, 500 * i); // 500ms delay for each log line
+        }, 500 * i); 
       }
     } catch (error: any) {
       console.error("Error fetching logs:", error.message);
@@ -29,7 +29,7 @@ const LogsPage: React.FC = () => {
   };
 
   useEffect(() => {
-    fetchLogs(); // Fetch logs on component mount
+    fetchLogs(); 
   }, []);
 
   return (
