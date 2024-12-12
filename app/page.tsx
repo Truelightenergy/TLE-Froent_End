@@ -1,12 +1,20 @@
-"use client"
+// page.tsx
+"use client";
 
-import { useRouter } from "next/navigation";
+import React from "react";
+import withAuth from "./auth"; 
+import SomeComponent from "./authComponent"; 
 
+// Wrap SomeComponent with the HOC
+const ProtectedComponent = withAuth(SomeComponent);
 
-export default function Home() {
-
-  const router = useRouter()
+// Render the wrapped component
+const App: React.FC = () => {
   return (
-    router.push("/login/signin") 
+    <div>
+      <ProtectedComponent />
+    </div>
   );
-}
+};
+
+export default App;

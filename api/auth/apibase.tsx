@@ -27,7 +27,7 @@ class ApiBase {
       (response) => response,
       (error) => {
         if (error.response && error.response.status === 401) {
-          Router.push("/login"); // Redirect to login page on unauthorized access
+          Router.push("/login/"); // Redirect to login page on unauthorized access
         }
         return Promise.reject(error);
       }
@@ -88,6 +88,7 @@ class ApiBase {
    */
   private async refresh_token_backend_call(): Promise<string | null> {
     const refreshToken = localStorage.getItem(this.refreshTokenKey);
+    console.log(refreshToken)
     if (!refreshToken) {
       console.warn("No refresh token available.");
       return null; // No refresh token available

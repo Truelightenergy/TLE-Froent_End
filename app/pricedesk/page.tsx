@@ -116,7 +116,7 @@ const PriceDesk: React.FC = () => {
             <div className="grid grid-cols-1 xl:grid-cols-3 gap-3">
               {/* Left Div - Table */}
               <div className="bg-white shadow-lg rounded-lg p-4 xl:col-span-1">
-                <h4 className="text-xl font-semibold text-gray-800 mb-4">
+                <h4 className="text-xl font-semibold text-gray-800 mb-4 text-center">
                   Cost Components Table
                 </h4>
                 <div className="overflow-x-auto w-full md:w-3/4 xl:w-3/4 mx-auto">
@@ -147,12 +147,9 @@ const PriceDesk: React.FC = () => {
               {/* Right Div - Charts */}
               <div className="charts bg-white shadow-lg rounded-lg p-4 space-y-6 xl:col-span-2 overflow-y-auto">
                 {/* Pie Chart */}
-                <div className="bg-gray-300 rounded-lg shadow-md">
-                  <h4 className="text-lg font-semibold text-gray-800 mb-3 text-center">
-                    Cost Components Breakdown
-                  </h4>
-                  <Plot
-                    data={[
+                <div className="bg-gray-300 rounded-lg pb-5 shadow-md flex flex-col justify-center items-center">
+                  <h4 className="text-lg font-semibold text-gray-800 mb-3 pt-3 text-center">Cost Components Breakdown</h4>
+                  <Plot data={[
                       {
                         labels: sampleData.map((item) => item.component),
                         values: sampleData.map((item) => item.value),
@@ -166,8 +163,8 @@ const PriceDesk: React.FC = () => {
                 </div>
 
                 {/* Line Chart (FFR Monthly Pricing) */}
-                <div className="bg-gray-300 rounded-lg shadow-md">
-                  <h4 className="text-lg font-semibold text-gray-800 mb-3 text-center">
+                <div className="bg-gray-300 rounded-lg shadow-md pb-5 flex flex-col justify-center items-center">
+                  <h4 className="text-lg font-semibold text-gray-800 mb-3 pt-3 text-center">
                     FFR Monthly Pricing
                   </h4>
                   <Plot
@@ -217,12 +214,11 @@ const PriceDesk: React.FC = () => {
                 </div>
 
                 {/* Hourly Usage Bar Chart */}
-                <div className="bg-gray-300 rounded-lg shadow-md">
-                  <h4 className="text-lg font-semibold text-gray-800 mb-3 text-center">
+                <div className="bg-gray-300 rounded-lg shadow-md pb-5 flex flex-col justify-center items-center">
+                  <h4 className="text-lg font-semibold text-gray-800 mb-3 pt-3  text-center">
                     Hourly Usage
                   </h4>
-                  <Plot
-                    data={[
+                  <Plot data={[
                       {
                         x: Array.from(
                           { length: 24 },
@@ -237,8 +233,7 @@ const PriceDesk: React.FC = () => {
                       },
                     ]}
                     layout={{ height: 600, width: 700 }}
-                    config={{ responsive: true, displayModeBar: true }}
-                  />
+                    config={{ responsive: true, displayModeBar: true }}/>
                 </div>
               </div>
             </div>

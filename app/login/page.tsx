@@ -2,7 +2,7 @@
 
 import React, { useState, useCallback, Suspense, useEffect } from "react";
 import * as z from "zod";
-import ApiLogin from "../../../api/auth/apilogin";
+import ApiLogin from "../../api/auth/apilogin";
 import { useRouter } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm, SubmitHandler } from "react-hook-form";
@@ -13,13 +13,13 @@ import {
   FormLabel,
   FormControl,
   FormMessage,
-} from "../components/ui/form";
+} from "./components/ui/form";
 
 import Image from 'next/image';
-import Logo from '../../../public/images/TLE_Logo.png';
+import Logo from '../../public/images/TLE_Logo.png';
 
-const Button = React.lazy(() => import("../components/ui/button").then(module => ({ default: module.Button })));
-const Input = React.lazy(() => import("../components/ui/input").then(module => ({ default: module.Input })));
+const Button = React.lazy(() => import("./components/ui/button").then(module => ({ default: module.Button })));
+const Input = React.lazy(() => import("./components/ui/input").then(module => ({ default: module.Input })));
 
 // Form validation schema
 const signInSchema = z.object({
@@ -53,8 +53,8 @@ const Page: React.FC = () => {
       if (data.access_token) {
         localStorage.setItem("access_token", data.access_token);
 
-        console.log("Redirecting to home...");
-        router.push("../home");
+        // console.log("Redirecting to home...");
+        router.push("/home");
       } else {
         setErrorMessage(data.msg || "Login failed. Please try again.");
       }
@@ -68,7 +68,7 @@ const Page: React.FC = () => {
 
   useEffect(() => {
     React.startTransition(() => {
-      import("../components/ui/button");
+      import("./components/ui/button");
     });
   }, []);
 

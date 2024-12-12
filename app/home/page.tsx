@@ -1,3 +1,9 @@
+"use client"; 
+
+
+import withAuth from "../page";
+
+
 const tableData = [
   { utility_name: "FGE (WCMASS)", utility_price: "$0.19304", headroom_dollar: "$0.07945", headroom_percent: "41.16%" },
   { utility_name: "FGE (WCMASS)", utility_price: "$0.19304", headroom_dollar: "$0.07521", headroom_percent: "38.96%" },
@@ -56,4 +62,4 @@ const StateHeatmap = () => {
 };
 
 
-export default StateHeatmap;
+export default withAuth(StateHeatmap);
