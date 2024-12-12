@@ -22,7 +22,7 @@ const LogsPage: React.FC = () => {
         }, 500 * i); 
       }
     } catch (error: any) {
-      console.error("Error fetching logs:", error.message);
+      console.log("Error fetching logs:", error.message);
     } finally {
       setLoading(false);
     }

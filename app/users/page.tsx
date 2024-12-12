@@ -39,10 +39,10 @@ const ViewUsersPage: React.FC = () => {
         setUsers(transformedUsers); // Set the transformed users to state
         setTotalUsers(transformedUsers.length); // Set total users for pagination
       } else {
-        console.error("Invalid data structure:", data);
+        console.log("Invalid data structure:", data);
       }
     } catch (error) {
-      console.error("Error fetching users:", error);
+      console.log("Error fetching users:", error);
     } finally {
       setLoading(false);
     }

@@ -101,7 +101,7 @@ function listners() {
                 truelight.loader.hide();
             },
             error: function (jqXHR, textStatus, errorThrown) {
-                console.error('Error:', textStatus, errorThrown);
+                console.log('Error:', textStatus, errorThrown);
                 $('#priceform')[0].reset();
                 truelight.loader.hide();
             }

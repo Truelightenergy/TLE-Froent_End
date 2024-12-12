@@ -25,7 +25,7 @@ const SubscriptionManagement: React.FC = () => {
 //       const data = await response.json();
 //       setSubscriptions(data);
 //     } catch (error) {
-//       console.error("Error fetching subscriptions:", error);
+//       console.log("Error fetching subscriptions:", error);
 //     } finally {
 //       setLoading(false);
 //     }

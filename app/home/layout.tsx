@@ -1,10 +1,27 @@
+"use client";
+
 import Navbar from "./navbar";
+
+
+
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
+
 
 interface LayoutProps {
   children: React.ReactNode;
 }
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
+
+  const router = useRouter();
+  useEffect(() => {
+      const token = localStorage.getItem("access_token");
+      if (!token) {
+         return router.push("/login"); // Redirect if no token
+      }
+    }, [router]);
+
   return (
     <div className="flex min-h-screen bg-gray-100">
       {/* Sidebar */}

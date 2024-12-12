@@ -74,7 +74,7 @@ class ApiBase {
         const now = Date.now() / 1000;
         return decoded.exp < now;
       } catch (error) {
-        console.error("Failed to decode token:", error);
+        console.log("Failed to decode token:", error);
         return true; //  
       }
     }
@@ -102,7 +102,7 @@ class ApiBase {
       localStorage.setItem(this.tokenKey, newToken); // Store new access token
       return newToken;
     } catch (error) {
-      console.error("Failed to refresh token:", error);
+      console.log("Failed to refresh token:", error);
       toast.error("Failed to refresh token. Please log in again.");
       Router.push("/login"); // Redirect to login on failure
       return null;
@@ -203,9 +203,9 @@ class ApiBase {
    */
   private handleError(error: unknown) {
     if (axios.isAxiosError(error) && error.response) {
-      console.error("Request failed:", error.response.data);
+      console.log("Request failed:", error.response.data);
     } else {
-      console.error("Request failed:", error);
+      console.log("Request failed:", error);
     }
     throw error;
   }

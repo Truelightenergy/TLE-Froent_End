@@ -23,7 +23,7 @@ const RecentUploads: React.FC = () => {
       const data = await response.json();
       setUploads(data);  
     } catch (error) {
-      console.error('Error fetching uploads:', error);
+      console.log('Error fetching uploads:', error);
     } finally {
       setLoading(false);
     }

@@ -59,7 +59,7 @@ const Page: React.FC = () => {
         setErrorMessage(data.msg || "Login failed. Please try again.");
       }
     } catch (error) {
-      console.error("An error occurred:", error);
+      console.log("An error occurred:", error);
       setErrorMessage("An error occurred during login. Please try again.");
     } finally {
       setLoading(false);

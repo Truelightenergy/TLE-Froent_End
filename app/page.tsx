@@ -1,20 +1,19 @@
-// page.tsx
 "use client";
 
-import React from "react";
-import withAuth from "./auth"; 
-import SomeComponent from "./authComponent"; 
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 
-// Wrap SomeComponent with the HOC
-const ProtectedComponent = withAuth(SomeComponent);
+export default function Home() {
+  const router = useRouter();
 
-// Render the wrapped component
-const App: React.FC = () => {
-  return (
-    <div>
-      <ProtectedComponent />
-    </div>
-  );
-};
+  useEffect(() => {
+    const token = localStorage.getItem("access_token");
+    if (!token) {
+      router.push("/login");
+    } else {
+      router.push("/home");  
+    }
+  }, [router]);
 
-export default App;
+  return <div>Loading...</div>;
+}

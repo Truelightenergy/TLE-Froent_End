@@ -33,7 +33,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     console.log(result)
     res.status(200).json(result.rows);  // Return the query result as JSON
   } catch (error) {
-    console.error('Error fetching uploads:', error);
+    console.log('Error fetching uploads:', error);
     res.status(500).json({ error: 'Internal server error' });
   }
 }

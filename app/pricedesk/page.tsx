@@ -1,5 +1,9 @@
 "use client";
 
+
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
+
 import { useState } from "react";
 import Image from "next/image";
 import Layout from "../home/layout";
@@ -12,6 +16,16 @@ const PriceDesk: React.FC = () => {
   const [fileUploaded, setFileUploaded] = useState(false); // Track if file is uploaded
   const [showWarning, setShowWarning] = useState(false); // State to control warning message
   const [showSampleResults, setShowSampleResults] = useState(false);
+
+  const router = useRouter();
+
+
+  useEffect(() => {
+    const token = localStorage.getItem("access_token");
+    if (!token) {
+       return router.push("/login"); // Redirect if no token
+    }
+  }, [router]);
 
   const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0]; // Get the uploaded file
@@ -52,8 +66,10 @@ const PriceDesk: React.FC = () => {
     { component: "Full Requirements Price", value: 208.3484 },
   ];
 
-  return (
-    <Layout>
+
+
+return (
+  <Layout>
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
         {/* Upload Price Request Form */}
         <div className="bg-white shadow-lg rounded-lg p-6 col-span-1 md:col-span-2 xl:col-span-4">
@@ -281,8 +297,9 @@ const PriceDesk: React.FC = () => {
       />
       <Script src="/pricedesk_upload.js" strategy="afterInteractive"/>
     </Layout>
-  );
-};
+    
+  )};
+;
 
 export default PriceDesk;
 
